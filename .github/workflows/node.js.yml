@@ -35,3 +35,11 @@ jobs:
       with:
         name: test-and-code-coverage-report
         path: test-results.txt
+    - name: Install Heroku CLI # <- IMPORTANT!!! Make sure the cli is installed before using the action
+      run: |
+        curl https://cli-assets.heroku.com/install.sh | sh 
+    - uses: akhileshns/heroku-deploy@v3.15.15 # This is the action
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: "secure-api-sonam198718-staging" #Must be unique in Heroku
+        heroku_email: "sonambansal09@gmail.com"
